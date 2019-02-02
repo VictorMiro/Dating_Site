@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'datingcore.apps.DatingcoreConfig',
-    'debug_toolbar'
+    'debug_toolbar',
+    'profileOF',
+    'messagesOF'
 ]
 
 MIDDLEWARE = [
