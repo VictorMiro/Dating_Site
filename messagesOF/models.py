@@ -6,4 +6,4 @@ class Messages(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text_of = models.TextField()
     date_of = models.DateTimeField(auto_now=True)
-    # reciver =
+    reciver = models.ForeignKey(User, on_delete=models.CASCADE)
