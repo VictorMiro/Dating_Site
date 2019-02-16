@@ -18,11 +18,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from datingcore.views import HomePageView
+from datingcore.views import HomePageView, Register, ThankYouView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePageView.as_view(), name='homepage'),
+    path('registration/', Register.as_view(), name='registration'),
+    path('registration/registration_successfully/', ThankYouView.as_view(), name='thank_you'),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
 if settings.DEBUG:
     import debug_toolbar

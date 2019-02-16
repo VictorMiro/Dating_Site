@@ -1,0 +1,11 @@
+{% extends "homepage.html" %}
+ {% load bootstrap %}
+ {% block content %}
+    <form method="post">
+    <div class='container'>
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <input type="submit" class="btn btn-success" value="Логин">
+         </div>
+    </form>
+{% endblock %} 

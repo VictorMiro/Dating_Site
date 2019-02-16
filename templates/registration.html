@@ -1,0 +1,14 @@
+{% extends 'homepage.html' %}
+ {% load bootstrap %}
+ {% block content %}
+<form method="post">
+ <div class='container'>
+    {% csrf_token %}
+    <!--<label {% if form.username.errors %}style="color: red;"{%endif%}>{{form.username.label}}</label>-->
+    <!--{{ form.username }}-->
+    {{form|bootstrap}}
+    <input type="submit" class="btn btn-success" value="Registration">
+ </div>
+</form>
+{% endblock %}
+
