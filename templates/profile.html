@@ -1,0 +1,24 @@
+{% extends 'homepage.html' %}
+ {% block content %}
+<div class="col-sm-1 col-md-9">
+            <div class="thumbnail">
+              <img align="center" src="/media/{{ user.avatar }}" style="max-width: 200px;">
+              <div class="caption">
+   <br>
+
+     <br>
+     <h2 align="left">Nickname : {{ user.username }}</h2>
+       <h2 align="left">First Name : {{ user.first_name }}</h2>
+     <h2 align="left">Last Name : {{ user.last_name }}</h2>
+      <h2 align="lef">Email: {{ user.email }}</h2>
+     <h2 align="left">Age : {{ user.age }}</h2>
+     <h2 align="left">Rating : {{ user.rating }}</h2>
+     <h2 align="left">Category : {{ user.category }}</h2>
+     <h2 align="left">Gender : {{ user.get_gender_display }}</h2>
+     <h2 align="left">Phone : {{ user.phone }}</h2>
+     <h2 align="left">BIO : {{ user.bio }}</h2>
+
+ {% endblock %}
+              </div>
+</div>
+            </div>

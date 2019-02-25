@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, UpdateView
 from django.urls import reverse
 from datingcore.forms import RegisterForm
+from datingcore.models import CustomUser
 
 
 class HomePageView(TemplateView):
@@ -21,3 +22,14 @@ class Register(FormView):
 
 class ThankYouView(TemplateView):
     template_name = 'registration/registration_successfully.html'
+
+
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
+
+
+class ProfileEditView(UpdateView):
+    template_name = 'edit_profile.html'
+    model = CustomUser
+    fields = ['email']
+

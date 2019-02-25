@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
+from datingcore.models import CustomUser
 
 
 class RegisterForm(forms.ModelForm):
@@ -15,7 +15,7 @@ class RegisterForm(forms.ModelForm):
         return self.cleaned_data
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = (
             'username',
             'first_name',
