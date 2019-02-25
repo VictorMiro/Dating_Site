@@ -1,24 +1,26 @@
 {% extends 'homepage.html' %}
  {% block content %}
-<div class="col-sm-1 col-md-9">
-            <div class="thumbnail">
-              <img align="center" src="/media/{{ user.avatar }}" style="max-width: 200px;">
-              <div class="caption">
-   <br>
-
-     <br>
-     <h2 align="left">Nickname : {{ user.username }}</h2>
-       <h2 align="left">First Name : {{ user.first_name }}</h2>
-     <h2 align="left">Last Name : {{ user.last_name }}</h2>
-      <h2 align="lef">Email: {{ user.email }}</h2>
-     <h2 align="left">Age : {{ user.age }}</h2>
-     <h2 align="left">Rating : {{ user.rating }}</h2>
-     <h2 align="left">Category : {{ user.category }}</h2>
-     <h2 align="left">Gender : {{ user.get_gender_display }}</h2>
-     <h2 align="left">Phone : {{ user.phone }}</h2>
-     <h2 align="left">BIO : {{ user.bio }}</h2>
+     <div class="card" style="max-width: 300px;">
+  <img class="card-img-top" src="/media/{{ user.avatar }}" alt="Card image cap">
+  <ul class="list-group list-group-flush">
+      <br>
+      <h5 class="card-title">Profile</h5>
+      <br>
+    <li class="list-group-item">Nickname : {{ user.username }}</li>
+    <li class="list-group-item">First Name : {{ user.first_name }}</li>
+    <li class="list-group-item">Last Name : {{ user.last_name }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+    <li class="list-group-item">Age : {{ user.age }}</li>
+    <li class="list-group-item">Rating : {{ user.rating }}</li>
+    <li class="list-group-item">Category : {{ user.category }}</li>
+    <li class="list-group-item">Gender : {{ user.get_gender_display }}</li>
+    <li class="list-group-item">Phone : {{ user.phone }}</li>
+    <li class="list-group-item">BIO : {{ user.bio }}</li>
+  </ul>
+  <div class="card-body">
+    <a href="/" class="card-link">Back to homepage</a>
+  </div>
+</div>
 
  {% endblock %}
-              </div>
-</div>
-            </div>
+

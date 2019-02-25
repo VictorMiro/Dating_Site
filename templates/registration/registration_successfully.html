@@ -1,13 +1,22 @@
 {% extends 'homepage.html' %}
  {% block content %}
-    <h2 align="center">
-Thanks for registration!
-         <br>
-    registration was successful!
-         <br>
-    Enter the site using login!</h2>
+     <div class="card text-center">
+  <div class="card-header">
+    Successful
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Thanks for registration!</h5>
+    <p class="card-text">Enter the site using login!</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+  </div>
+  <div class="card-footer text-muted">
+
+  </div>
+</div>
+
      <script>
      function redirect() {window.location.href='/'};
               setTimeout(redirect, 10000);
      </script>
+
 {% endblock %} 

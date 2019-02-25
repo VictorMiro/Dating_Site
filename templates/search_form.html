@@ -1,0 +1,18 @@
+{% extends 'homepage.html' %}
+{% block content %}
+
+<form method="GET">
+           {{ form }}
+    <input type="submit" value="Search">
+</form>
+    <tr>
+       {% for user in customuser_list %}
+           <td>
+       <td>{{user.username}}</td>
+       <td>{{user.age}}</td>
+       <td>{{user.rating}}</td>
+           <td>
+           </tr>
+       {% endfor %}
+
+ {% endblock %}
