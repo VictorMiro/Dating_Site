@@ -44,8 +44,8 @@ class SearchForm(forms.Form):
     TYPE_CHOICES = (('', '------'),)
     TYPE_CHOICES += CustomUser.TYPE_CHOICES
 
-    age = forms.IntegerField(initial=18, required=False)
-    rating = forms.IntegerField(initial=0, required=False)
+    age = forms.IntegerField(required=False)
+    rating = forms.IntegerField(required=False)
     category = forms.ModelChoiceField(queryset=CategoryOFUSER.objects.all(), required=False, empty_label='------')
     gender = forms.ChoiceField(choices=TYPE_CHOICES, required=False)
     city = forms.ModelChoiceField(queryset=CityOFUSER.objects.all(), required=False, empty_label='------')
