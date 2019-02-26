@@ -67,3 +67,20 @@ class SearchForm(forms.Form):
             if field_name in self.cleaned_data and self.cleaned_data[field_name]:
                 queryset = getattr(self, f"search_by_{field_name}")(queryset)
         return queryset
+
+
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ('avatar', 'username', 'first_name', 'last_name', 'age', 'category', 'gender', 'city', 'bio', 'phone')
+        widgets = {
+            'category': forms.widgets.CheckboxSelectMultiple(attrs={}),
+            'city': forms.widgets.CheckboxSelectMultiple(attrs={})
+        }
+
+    def save(self, *args, **kwargs):
+        user = super(EditProfileForm, self).save(commit=False)
+        user.save()
+        return user
+

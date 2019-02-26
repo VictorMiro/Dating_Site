@@ -18,7 +18,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
-from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, ProfileEditView, SearchFormView
+from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, SearchFormView, \
+    EditUserProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('registration/registration_successfully/', ThankYouView.as_view(), name='thank_you'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('profile/', ProfileView.as_view(), name='profile_view'),
-    path('profile/edit/', ProfileEditView.as_view(), name='profile_edit_view'),
+    path('profile/edit/', EditUserProfileView.as_view(), name='profile_edit_view'),
     path('search/', SearchFormView.as_view(), name='search_view')
 
 ]

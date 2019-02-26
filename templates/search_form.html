@@ -1,18 +1,63 @@
 {% extends 'homepage.html' %}
+{% load bootstrap %}
 {% block content %}
-
+<br>
 <form method="GET">
-           {{ form }}
-    <input type="submit" value="Search">
+ <div class='container'>
+    {{form|bootstrap}}
+    <input type="submit" class="btn btn-success" value="Search">
+     <a class="btn btn-primary" href="{% url 'search_view' %}" role="button">Clean</a>
+ </div>
 </form>
-    <tr>
+<br>
        {% for user in customuser_list %}
-           <td>
-       <td>{{user.username}}</td>
-       <td>{{user.age}}</td>
-       <td>{{user.rating}}</td>
-           <td>
-           </tr>
-       {% endfor %}
+           <br>
+            <div class="card" style="max-width: 300px;">
+ <img class="card-img-top" src="/media/{{ user.avatar }}" alt="Card image cap">
+  <ul class="list-group list-group-flush">
+      <br>
+      <h5 class="card-title">Profile</h5>
+      <br>
+    <li class="list-group-item">Nickname : {{ user.username }}</li>
+    <li class="list-group-item">First Name : {{ user.first_name }}</li>
+    <li class="list-group-item">Last Name : {{ user.last_name }}</li>
+    <li class="list-group-item">Email: {{ user.email }}</li>
+    <li class="list-group-item">Age : {{ user.age }}</li>
+    <li class="list-group-item">Rating : {{ user.rating }}</li>
+    <li class="list-group-item">Category : {{ user.category }}</li>
+    <li class="list-group-item">Gender : {{ user.get_gender_display }}</li>
+    <li class="list-group-item">BIO : {{ user.bio }}</li>
+</ul>
+           </div>
 
- {% endblock %}
+
+       {% endfor %}
+    <br>
+    <style>
+    ul li {
+        margin: 10px;
+    }
+    </style>
+    <ul class="pagination" style="list-style: none; display:flex;">
+           {% if page_obj.has_previous %}
+           <li><a href="?page={{ page_obj.previous_page_number }}&">&laquo;</a></li>
+           {% else %}
+           <li class="disabled"><a>&laquo;</a></li>
+           {% endif %}
+
+           {% for page in page_obj.paginator.page_range %}
+               {% if page == page_obj.number %}
+                    <li class="active">{{ forloop.counter }}</li>
+               {% else %}
+                    <li><a href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+               {% endif %}
+            {% endfor %}
+           {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+           {% else %}
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+           {% endif %}
+           </ul>
+
+
+{% endblock %}
