@@ -54,9 +54,14 @@ class EditUserProfileView(FormView):
 
     def form_valid(self, form):
         form.save(user=self.request.user)
-        return redirect('/')
+        return redirect('success_update')
 
     def get_form_kwargs(self):
         kwargs = super(EditUserProfileView, self).get_form_kwargs()
         kwargs['instance'] = get_object_or_404(CustomUser, username=self.request.user)
         return kwargs
+
+
+class SuccessfulEditView(TemplateView):
+    template_name = 'successfullEdit.html'
+
