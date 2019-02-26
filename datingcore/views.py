@@ -35,16 +35,18 @@ class SearchFormView(ListView):
 
     def get_queryset(self):
         queryset = self.model.objects.all()
+        if self.request.GET:
+            self.form = SearchForm(data=self.request.GET)
+            self.form.is_valid()
+            queryset = self.form.get_search_queryset(queryset)
+        else:
+            self.form = SearchForm()
+
         return queryset
 
     def get_context_data(self, *args, **kwargs):
         context = super(SearchFormView, self).get_context_data(*args, **kwargs)
-        if self.request.GET:
-            context['form'] = SearchForm(data=self.request.GET)
-            if context['form'].is_valid():
-                context['customuser_list'] = context['form'].get_search_queryset(self.object_list)
-        else:
-            context['form'] = SearchForm()
+        context['form'] = self.form
         return context
 
 

@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from datingcore.models import CustomUser, CategoryOFUSER, CityOFUSER
+from datingcore.widget import EditorWidget
 
 
 class RegisterForm(forms.ModelForm):
@@ -40,10 +41,13 @@ class RegisterForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
+    TYPE_CHOICES = (('', '------'),)
+    TYPE_CHOICES += CustomUser.TYPE_CHOICES
+
     age = forms.IntegerField(initial=18, required=False)
     rating = forms.IntegerField(initial=0, required=False)
     category = forms.ModelChoiceField(queryset=CategoryOFUSER.objects.all(), required=False, empty_label='------')
-    gender = forms.ChoiceField(choices=CustomUser.TYPE_CHOICES)
+    gender = forms.ChoiceField(choices=TYPE_CHOICES, required=False)
     city = forms.ModelChoiceField(queryset=CityOFUSER.objects.all(), required=False, empty_label='------')
 
     def search_by_age(self, queryset):
@@ -75,8 +79,7 @@ class EditProfileForm(forms.ModelForm):
         model = CustomUser
         fields = ('avatar', 'username', 'first_name', 'last_name', 'age', 'category', 'gender', 'city', 'bio', 'phone')
         widgets = {
-            'category': forms.widgets.CheckboxSelectMultiple(attrs={}),
-            'city': forms.widgets.CheckboxSelectMultiple(attrs={})
+            'bio': EditorWidget()
         }
 
     def save(self, *args, **kwargs):

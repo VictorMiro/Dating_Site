@@ -18,6 +18,9 @@ class CategoryOFUSER(models.Model):
         verbose_name = 'Категория пользователя'
         verbose_name_plural = 'Категории пользователей'
 
+    def __str__(self):
+        return self.name
+
 
 class CityOFUSER(models.Model):
     name = models.CharField(max_length=255)
@@ -26,6 +29,9 @@ class CityOFUSER(models.Model):
     class Meta:
         verbose_name = 'Город пользователя'
         verbose_name_plural = 'Города пользователей'
+
+    def __str__(self):
+        return self.name
 
 
 class CustomUser(AbstractUser):
@@ -47,3 +53,5 @@ class CustomUser(AbstractUser):
     city = models.ForeignKey(CityOFUSER, on_delete=models.SET_NULL, null=True, blank=True)
     bio = models.TextField(blank=True, null=True,)
     phone = models.CharField(max_length=255, blank=True, null=True)
+
+

@@ -26,7 +26,7 @@
     <li class="list-group-item">Rating : {{ user.rating }}</li>
     <li class="list-group-item">Category : {{ user.category }}</li>
     <li class="list-group-item">Gender : {{ user.get_gender_display }}</li>
-    <li class="list-group-item">BIO : {{ user.bio }}</li>
+    <li class="list-group-item">BIO : {{ user.bio|safe }}</li>
 </ul>
            </div>
 

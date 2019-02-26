@@ -1,0 +1,12 @@
+<!-- Include Editor style. -->
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_editor.min.css' rel='stylesheet' type='text/css' />
+<link href='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_style.min.css' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.0.10/css/all.css" crossorigin="anonymous">
+<!-- Include JS file. -->
+<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/js/froala_editor.min.js'></script>
+<script>
+  $(function() {
+    $('textarea#id_{{ name }}').froalaEditor()
+  });
+</script>
+<textarea name="{{ name }}" id="id_{{ name }}">{{ value }}</textarea>
