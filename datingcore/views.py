@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from django.views.generic import TemplateView, FormView, UpdateView, ListView
-from django.urls import reverse
+from django.shortcuts import redirect, get_object_or_404
+from django.views.generic import TemplateView, FormView, ListView
 from datingcore.forms import RegisterForm, SearchForm, EditProfileForm
 from datingcore.models import CustomUser
 

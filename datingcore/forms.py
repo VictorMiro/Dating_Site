@@ -1,5 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
 
 from datingcore.models import CustomUser, CategoryOFUSER, CityOFUSER
 from datingcore.widget import EditorWidget
