@@ -14,12 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from datingcore import views
 from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, SearchFormView, \
-    EditUserProfileView, SuccessfulEditView
+    EditUserProfileView, SuccessfulEditView, FriendsRelationView, change_friends
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +31,11 @@ urlpatterns = [
     path('profile/', ProfileView.as_view(), name='profile_view'),
     path('profile/edit/', EditUserProfileView.as_view(), name='profile_edit_view'),
     path('search/', SearchFormView.as_view(), name='search_view'),
-    path('profile/edit/success/', SuccessfulEditView.as_view(), name='success_update')
+    path('profile/edit/success/', SuccessfulEditView.as_view(), name='success_update'),
+    path('friend_list/', FriendsRelationView.as_view(), name='change_friends'),
+    re_path(r'^friend_list/(?P<operation>.+)/(?P<pk>\d+)/$', views.change_friends, name='change_friends_change')
+
+
 
 ]
 if settings.DEBUG:

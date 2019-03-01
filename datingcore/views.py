@@ -1,11 +1,18 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, get_object_or_404, render
+from django.views import View
 from django.views.generic import TemplateView, FormView, ListView
 from datingcore.forms import RegisterForm, SearchForm, EditProfileForm
-from datingcore.models import CustomUser
+from datingcore.models import CustomUser, Friend
 
 
-class HomePageView(TemplateView):
+class HomePageView(ListView):
     template_name = "homepage.html"
+    model = CustomUser
+
+    def get_queryset(self):
+        queryset = self.model.objects.exclude(id=self.request.user.id)[:3]
+        return queryset
 
 
 class Register(FormView):
@@ -32,7 +39,7 @@ class SearchFormView(ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        queryset = self.model.objects.all()
+        queryset = self.model.objects.exclude(id=self.request.user.id)
         if self.request.GET:
             self.form = SearchForm(data=self.request.GET)
             self.form.is_valid()
@@ -64,4 +71,30 @@ class EditUserProfileView(FormView):
 
 class SuccessfulEditView(TemplateView):
     template_name = 'successfullEdit.html'
+
+
+class FriendsRelationView(TemplateView):
+    template_name = 'Friendlist.html'
+
+    def get(self, request):
+        users = CustomUser.objects.exclude(id=request.user.id)
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.users.all()
+        args = {'users': users, 'friends': friends}
+        return render(request, self.template_name, args)
+
+
+def change_friends(request, operation, pk):
+    friend = CustomUser.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, friend)
+    elif operation == 'remove':
+        Friend.lose_friend(request.user, friend)
+    return redirect('change_friends')
+
+
+
+
+
+
 

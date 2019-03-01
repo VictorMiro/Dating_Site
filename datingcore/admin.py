@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext, gettext_lazy as _
 
-from datingcore.models import CustomUser, CategoryOFUSER, CityOFUSER
+from datingcore.models import CustomUser, CategoryOFUSER, CityOFUSER, Friend
 
 
 class CustomUserAdmin(UserAdmin):
@@ -19,3 +19,5 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(CategoryOFUSER)
 admin.site.register(CityOFUSER)
+admin.site.register(Friend)
+

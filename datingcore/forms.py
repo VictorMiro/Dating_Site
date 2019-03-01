@@ -6,6 +6,7 @@ from datingcore.widget import EditorWidget
 
 class RegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email')
+    gender = forms.ChoiceField(choices=CustomUser.TYPE_CHOICES)
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Confirm your password')
 
@@ -28,6 +29,7 @@ class RegisterForm(forms.ModelForm):
             'username',
             'first_name',
             'last_name',
+            'gender',
             'email',
             'password'
         )

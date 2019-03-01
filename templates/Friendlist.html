@@ -1,0 +1,38 @@
+{% extends 'homepage.html' %}
+{% block content %}
+
+{% for friend in friends %}
+<br>
+         <div class="card" style="max-width: 300px;">
+  <img class="card-img-top" src="/media/{{ friend.avatar }}" alt="Card image cap">
+  <ul class="list-group list-group-flush">
+      <br>
+      <h5 class="card-title">Profile</h5>
+      <br>
+    <li class="list-group-item">Nickname : {{ friend.username }}</li>
+    <li class="list-group-item">First Name : {{ friend.first_name }}</li>
+  </ul>
+
+</div>
+<a href="{% url 'change_friends_change' operation='remove' pk=friend.pk %}">
+<button type="button" class="btn btn-primary">Remove Friend</button>
+</a>
+    <a id="aCollapse" class="btn btn-primary" data-toggle="collapse" href="#myCollapse">
+  <span class="glyphicon glyphicon-chevron-down"></span> Full Information
+    </a>
+    <br>
+    <div class="collapse" id="myCollapse">
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Last Name : {{ friend.last_name }}</li>
+    <li class="list-group-item">Email: {{ friend.email }}</li>
+    <li class="list-group-item">Age : {{ friend.age }}</li>
+    <li class="list-group-item">Rating : {{ friend.rating }}</li>
+    <li class="list-group-item">Category : {{ friend.category }}</li>
+    <li class="list-group-item">Gender : {{ friend.get_gender_display }}</li>
+    <li class="list-group-item">City : {{ friend.city }}</li>
+    <li class="list-group-item">BIO : {{ friend.bio|safe }}</li>
+</ul>
+  </div>
+{% endfor %}
+
+{% endblock %}
