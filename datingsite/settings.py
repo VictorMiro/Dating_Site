@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'datingcore.apps.DatingcoreConfig',
     'debug_toolbar',
     'messagesOF',
-    'bootstrapform'
+    'bootstrapform',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'datingcore.context_processor.friend_list'
             ],
         },
     },

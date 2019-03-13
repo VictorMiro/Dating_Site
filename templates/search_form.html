@@ -22,12 +22,17 @@
     <li class="list-group-item">First Name : {{ user.first_name }}</li>
 
 
-{% if not user in friends_list %}
+{% if not user in friends %}
     <li class="list-group-item"><a href="{% url 'change_friends_change' operation='add' pk=user.pk  %}">
 <button type="button" class="btn btn-primary">Add friend</button>
 </a><br>
     </li>
+ {% else %}<li class="list-group-item"><a href="{% url 'change_friends'  %}">
+<button type="button" class="btn btn-primary">In Friend list</button>
+</a><br>
+    </li>
 
+{% endif %}
     <li id="aCollapse" class="btn btn-primary" data-toggle="collapse" href="#myCollapse">
   <span class="glyphicon glyphicon-chevron-down"></span> Full Information
 </li>
@@ -41,7 +46,7 @@
     <li class="list-group-item">Category : {{ user.category }}</li>
     <li class="list-group-item">Gender : {{ user.get_gender_display }}</li>
     <li class="list-group-item">City : {{ user.city }}</li>
-      {% endif %}
+
 
   </div>
 </ul>
