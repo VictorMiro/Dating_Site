@@ -12,5 +12,4 @@ class Messages(models.Model):
     reciver = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='inbox', on_delete=models.CASCADE, null=True)
     order_manager = PostManager()
 
-    def __str__(self):
-        return f'Dialog {self.user}'
+
