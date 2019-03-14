@@ -13,19 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-# from django.conf import settings
+from django.conf import settings
 from django.urls import path, include, re_path
-# from django.conf.urls.static import static
+from django.conf.urls.static import static
 from django.contrib import admin
-# from rest_framework import routers
+from rest_framework import routers
 
 from datingcore import views
-# from datingcore.api.views import CustomUserViewSet
+from datingcore.api.views import CustomUserViewSet
 from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, SearchFormView, \
     EditUserProfileView, SuccessfulEditView, FriendsRelationView
 
-# router = routers.DefaultRouter()
-# router.register('CustomUser', CustomUserViewSet)
+router = routers.DefaultRouter()
+router.register('CustomUser', CustomUserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,18 +39,18 @@ urlpatterns = [
     path('profile/edit/success/', SuccessfulEditView.as_view(), name='success_update'),
     path('friend_list/', FriendsRelationView.as_view(), name='change_friends'),
     re_path(r'^friend_list/(?P<operation>.+)/(?P<pk>\d+)/$', views.change_friends, name='change_friends_change'),
-    # path('api-auth/', include('rest_framework.urls')),
-    # path('api/v1/', include(router.urls))
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/', include(router.urls))
 
 
 
 ]
-# if settings.DEBUG:
-#     import debug_toolbar
-#     urlpatterns = [
-#         path('__debug__/', include(debug_toolbar.urls)),
-#     ] + urlpatterns
-#
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
