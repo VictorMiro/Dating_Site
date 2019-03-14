@@ -22,7 +22,7 @@ from django.contrib import admin
 from datingcore import views
 # from datingcore.api.views import CustomUserViewSet
 from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, SearchFormView, \
-    EditUserProfileView, SuccessfulEditView, FriendsRelationView, change_friends
+    EditUserProfileView, SuccessfulEditView, FriendsRelationView
 
 # router = routers.DefaultRouter()
 # router.register('CustomUser', CustomUserViewSet)
