@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # 'debug_toolbar',
     # 'messagesOF',
     'bootstrapform',
-    'rest_framework'
+    # 'rest_framework'
 ]
 
 MIDDLEWARE = [

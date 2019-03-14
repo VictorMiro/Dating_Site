@@ -20,12 +20,12 @@ from django.contrib import admin
 from rest_framework import routers
 
 from datingcore import views
-from datingcore.api.views import CustomUserViewSet
+# from datingcore.api.views import CustomUserViewSet
 from datingcore.views import HomePageView, Register, ThankYouView, ProfileView, SearchFormView, \
     EditUserProfileView, SuccessfulEditView, FriendsRelationView, change_friends
 
-router = routers.DefaultRouter()
-router.register('CustomUser', CustomUserViewSet)
+# router = routers.DefaultRouter()
+# router.register('CustomUser', CustomUserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,8 +39,8 @@ urlpatterns = [
     path('profile/edit/success/', SuccessfulEditView.as_view(), name='success_update'),
     path('friend_list/', FriendsRelationView.as_view(), name='change_friends'),
     re_path(r'^friend_list/(?P<operation>.+)/(?P<pk>\d+)/$', views.change_friends, name='change_friends_change'),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/', include(router.urls))
+    # path('api-auth/', include('rest_framework.urls')),
+    # path('api/v1/', include(router.urls))
 
 
 
