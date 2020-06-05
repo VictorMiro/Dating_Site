@@ -1,6 +1,6 @@
 certifi==2019.3.9
 chardet==3.0.4
-Django==2.1.5
+Django==2.2.13
 django-bootstrap-form==3.4
 django-debug-toolbar==1.11
 djangorestframework==3.9.2
